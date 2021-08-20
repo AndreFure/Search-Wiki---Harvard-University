@@ -1,16 +1,32 @@
 {% extends "encyclopedia/layout.html" %}
 
 {% block title %}
-    Encyclopedia
+Encyclopedia
 {% endblock %}
 
 {% block body %}
-    <h1>All Pages</h1>
-
-    <ul>
-        {% for entry in entries %}
-            <li>{{ entry }}</li>
-        {% endfor %}
-    </ul>
+<div class="panel">
+    <div class="panelLeft">
+        <img class="logo" src="../static/encyclopedia/WikiLogo.png" alt="Logo">
+    </div>
+    <div>
+        <form class="panelRight" action="{% url 'search' %}" method="POST">
+            {% csrf_token %}
+            {{ form }}
+        </form>
+    </div>
+</div>
+{% if search %}
+<h2>Searching for {{value}}</h2>
+{% else %}
+<h1>All Pages</h1>
+{% endif%}
+<ul>
+    {% for entry in entries %}
+    <a href="/wiki/{{ entry }}">
+        <li>{{ entry }}</li>
+    </a>
+    {% endfor %}
+</ul>
 
 {% endblock %}
