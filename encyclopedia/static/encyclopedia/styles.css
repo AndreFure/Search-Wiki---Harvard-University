@@ -11,10 +11,6 @@ h1 {
     padding-top: 20px;
     padding-bottom: 5px;
 }
-.pError{
-    color: red;
-    font-size: 30px;
-}
 .containerNewForm{
     display: flex;
     align-items: center;
@@ -29,11 +25,6 @@ textarea {
     display: block;
     height: 50vh;
     width: 80%;
-}
-#new-entry-title,
-#edit-entry-title {
-    margin-bottom: 5px;
-    width: 60vw;
 }
 
 .main {

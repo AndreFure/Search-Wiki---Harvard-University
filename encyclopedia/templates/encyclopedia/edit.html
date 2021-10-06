@@ -6,11 +6,14 @@ Wiki
 
 {% block body %}
 <h1>Edit entry</h1>
-<form action="{% url 'submitEditEntry' title %}" method="post">
+<form action="{% url 'submitEditEntry' title %}" method="post"
+    style="margin-left: 200px; width: 800px; margin-top: 30px;">
     {{ editPageForm }}
     {% csrf_token %}
     <br>
-    <button class="btn btn-secondary" type="submit">Submit</button>
+    <button class="btn btn-dark" type="submit"
+        style="border-radius: 20px; width: 200px; margin-left: 250px; margin-top: 30px;" type="submit">Submit
+        Changes</button>
 </form>
 
 {% endblock %}

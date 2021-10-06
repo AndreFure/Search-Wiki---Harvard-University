@@ -21,7 +21,7 @@ Wiki
         </div>
     </div>
     {% elif results|length > 1 %}
-    <div class="alert alert-success d-flex align-items-center" role="alert" style="border-radius: 50px;">
+    <div class="alert alert-success d-flex align-items-center" role="alert" style="border-radius: 50px; width: 800px;">
         <img src=" static/img/found.png" style="width: 40px;" alt="not found icon">
         <div>
             We have found {{ results|length }} results for you.
@@ -35,7 +35,8 @@ Wiki
         <div class="row">
             <div></div>
             <div class="col">
-                <div class="alert alert-danger d-flex align-items-center" role="alert" style="border-radius: 50px;">
+                <div class="alert alert-danger d-flex align-items-center" role="alert"
+                    style="border-radius: 50px; width: 800px;">
                     <img src="static/img/notFound.png" style="width: 40px;" alt="not found icon">
                     <div>
                         Sorry, we didn't find any results for "{{ query }}"

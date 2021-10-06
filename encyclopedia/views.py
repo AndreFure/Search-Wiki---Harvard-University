@@ -9,6 +9,8 @@ from django.urls import reverse
 
 
 # Sidebar form
+
+
 class SearchForm(forms.Form):
     query = forms.CharField(label="",
                             widget=forms.TextInput(attrs={'placeholder': 'Search Wiki', 'style': 'width:100%'}))
@@ -28,17 +30,17 @@ def index(request):
 class NewPageForm(forms.Form):
     title = forms.CharField(label="", widget=forms.TextInput(attrs={
         'placeholder': 'Enter new wiki title',
-        'id': 'new-entry-title'}))
-    data = forms.CharField(label="Wiki data.", widget=forms.Textarea(attrs={
-        'id': 'new-entry'}))
+        'id': 'newEntryTitle'}))
+    data = forms.CharField(label="", widget=forms.Textarea(attrs={
+        'id': 'newEntry'}))
 
 
 # Edit entry form.
 class EditPageForm(forms.Form):
     title = forms.CharField(label="", widget=forms.TextInput(attrs={
-        'id': 'edit-entry-title'}))
+        'id': 'editEntryTitle'}))
     data = forms.CharField(label="", widget=forms.Textarea(attrs={
-        'id': 'edit-entry'}))
+        'id': 'editEntry'}))
 
 
 # Wiki/Error url

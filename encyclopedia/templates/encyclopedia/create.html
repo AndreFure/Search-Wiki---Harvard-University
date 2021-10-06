@@ -8,7 +8,7 @@ Wiki
 {% if error %}
 <div class="container">
     <div class="col">
-        <div class="ruw">
+        <div class="ruw" style="width: 800px;">
             <div class="alert alert-danger d-flex align-items-center" role="alert" style="border-radius: 50px;">
                 <img src="static/img/alert.png" style="width: 40px;" alt="not found">
                 <div>
@@ -21,8 +21,9 @@ Wiki
 {% endif %}
 <form action="{% url 'create' %}" method="post">
     {% csrf_token %}
-    <div class="containerNewForm">{{ newPageForm }}</div>
-    <button class="btn btn-dark" type="submit" style="border-radius: 20px; width: 200px; margin-top: 30px;">Submit
+    <div class="containerNewForm" style="margin-left: 200px; width: 800px; margin-top: 30px;">{{ newPageForm }}</div>
+    <button class="btn btn-dark" type="submit"
+        style="border-radius: 20px; width: 200px; margin-left: 250px; margin-top: 30px;">Submit
         entry</button>
 </form>
 
