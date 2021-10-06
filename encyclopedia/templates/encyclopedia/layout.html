@@ -13,42 +13,32 @@
 
 <body>
     <div class="row">
-        <div class="sidebar sticky-top col-lg-2 col-md-3">
+        <div class="sidebar col-lg-2 col-md-3 col-sm-3 col-3">
             <h2>Wiki</h2>
-            <form action="{% url 'search' %}" method="GET">
-                <input class="search" type="text" name="q" placeholder="Search Encyclopedia">
+            <form action="{% url 'search' %}" method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <!--
+                        <input class="search" type="text" name="q" placeholder="Search Encyclopedia">
+                    -->
             </form>
-            <div style="margin-top: 50px;">
-                <a href=" {% url 'index' %}" class="alert-link">Home</a>
+            <div class="pt-2">
+                <a href="{% url 'index' %}">Home</a>
             </div>
             <div>
-                <a href="{% url 'newEntry' %}">Create New Page</a>
+                <a href="{% url 'create' %}">Create New Page</a>
             </div>
             <div>
-                <a href="{% url 'random' %}" role="button">Random Page</a>
+                <a href="{% url 'randomEntry' %}">Random Page</a>
             </div>
             {% block nav %}
             {% endblock %}
         </div>
-        <div class="main col-lg-10 col-md-9">
+        <div class="main col-lg-10 col-md-9 col-sm-9 col-9 d-flex-column justify-content-center">
             {% block body %}
             {% endblock %}
         </div>
     </div>
-    <footer class="sidebar" style="height: 400px;">
-        <div class="footerSpan"><span>By: Andrés Eduardo Genes</span>
-        </div>
-        <div class="footerSpan"><span><img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Harvard_University_logo.svg/1280px-Harvard_University_logo.svg.png"
-                    alt="Harvard Logo" style="width: 12vw;"> - Cambridge, MA, United States</span>
-        </div>
-        <div class="footerSpan"><span>Professors: Brian Yu (brian@cs.harvard.edu) & David J. Malan
-                (malan@cs.harvard.edu).
-                <img src="https://online-learning.harvard.edu/sites/default/files/shields/harvard-engineering.png"
-                    alt="Harvard Logo" style="width: 25px; margin: 15px;"> Harvard School of Engineering and Applied
-                Sciences.</span>
-        </div>
-    </footer>
 
 </body>
 

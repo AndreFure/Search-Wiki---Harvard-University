@@ -1,0 +1,49 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+Wiki
+{% endblock %}
+
+{% block body %}
+<h1>Search Results</h1>
+<ul class="searchingArea">
+    {% if results|length == 1 %}
+    <div class="container">
+        <div class="col">
+            <div class="row">
+                <div class="alert alert-success d-flex align-items-center" role="alert" style="border-radius: 50px;">
+                    <img src="static/img/found.png" style="width: 40px;" alt="not found icon">
+                    <div>
+                        We have found {{ results|length }} result for you.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% elif results|length > 1 %}
+    <div class="alert alert-success d-flex align-items-center" role="alert" style="border-radius: 50px;">
+        <img src=" static/img/found.png" style="width: 40px;" alt="not found icon">
+        <div>
+            We have found {{ results|length }} results for you.
+        </div>
+    </div>
+    {% endif %}
+    {% for result in results %}
+    <li><a href="{% url 'entry' result %}">{{ result }}</a></li>
+    {% empty %}
+    <div class="container">
+        <div class="row">
+            <div></div>
+            <div class="col">
+                <div class="alert alert-danger d-flex align-items-center" role="alert" style="border-radius: 50px;">
+                    <img src="static/img/notFound.png" style="width: 40px;" alt="not found icon">
+                    <div>
+                        Sorry, we didn't find any results for "{{ query }}"
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</ul>
+{% endblock %}

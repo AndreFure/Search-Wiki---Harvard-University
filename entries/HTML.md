@@ -5,7 +5,7 @@ HTML is a markup language that can be used to define the structure of a web page
 * headings
 * paragraphs
 * lists
-* links
+* links.
 * and more!
 
 The most recent major version of HTML is HTML5.
