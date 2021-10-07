@@ -52,11 +52,11 @@ def entry(request, title):
 def search(request):
     if request.method == "POST":
         entries_found = []
-        entries_all = util.list_entries()
+        titles = util.list_entries()
         form = SearchForm(request.POST)
         if form.is_valid():
             query = form.cleaned_data["query"]
-            for entry in entries_all:
+            for entry in titles:
                 if query.lower() == entry.lower():
                     title = entry
                     entry = util.get_entry(title)
@@ -74,26 +74,26 @@ def search(request):
         "form": SearchForm()
     })
 
+
 # Create new entry
 
 
 def create(request):
     if request.method == "POST":
-        new_entry = NewPageForm(request.POST)
-        if new_entry.is_valid():
-            title = new_entry.cleaned_data["title"]
-            data = new_entry.cleaned_data["data"]
-            entries_all = util.list_entries()
-            for entry in entries_all:
-                if entry.lower() == title.lower():
+        newInformation = NewPageForm(request.POST)
+        if newInformation.is_valid():
+            title = newInformation.cleaned_data["title"]
+            titles = util.list_entries()
+            for entry in titles:
+                if entry.lower() == newInformation.cleaned_data["title"].lower():
                     return render(request, "encyclopedia/create.html", {
                         "form": SearchForm(),
                         "newPageForm": NewPageForm(),
                         "error": "This wiki entry has been uploaded before."
                     })
-            new_entry_title = "# " + title
-            new_entry_data = "\n" + data
-            new_entry_content = new_entry_title + new_entry_data
+            new_entry_title = "# " + newInformation.cleaned_data["title"]
+            newInformation = "\n" + newInformation.cleaned_data["data"]
+            new_entry_content = new_entry_title + newInformation
             util.save_entry(title, new_entry_content)
             entry = util.get_entry(title)
             return render(request, "encyclopedia/entry.html", {
