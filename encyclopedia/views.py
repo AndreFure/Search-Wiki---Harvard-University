@@ -105,37 +105,36 @@ def create(request):
         "form": SearchForm(),
         "newPageForm": NewPageForm()
     })
-# Edit entry
+# Edit entry (modificado)
 
 
 def editEntry(request, title):
     if request.method == "POST":
         entry = util.get_entry(title)
-        edit_form = EditPageForm(initial={'title': title, 'data': entry})
+        formModify = EditPageForm(initial={'title': title, 'data': entry})
         return render(request, "encyclopedia/edit.html", {
             "form": SearchForm(),
-            "editPageForm": edit_form,
+            "editPageForm": formModify,
             "entry": entry,
             "title": title
         })
-# Submit entry edit
+# Submit entry edit (modificado)
 
 
 def submitEditEntry(request, title):
     if request.method == "POST":
-        edit_entry = EditPageForm(request.POST)
-        if edit_entry.is_valid():
-            content = edit_entry.cleaned_data["data"]
-            title_edit = edit_entry.cleaned_data["title"]
-            if title_edit != title:
+        modifyEntry = EditPageForm(request.POST)
+        if modifyEntry.is_valid():
+            entryEdit = modifyEntry.cleaned_data["title"]
+            if entryEdit != title:
                 filename = f"entries/{title}.md"
                 if default_storage.exists(filename):
                     default_storage.delete(filename)
-            util.save_entry(title_edit, content)
-            entry = util.get_entry(title_edit)
-            msg_success = "Successfully updated!"
+            util.save_entry(entryEdit, modifyEntry.cleaned_data["data"])
+            entry = util.get_entry(entryEdit)
+            msg_success = "You have been able to modify it."
         return render(request, "encyclopedia/entry.html", {
-            "title": title_edit,
+            "title": entryEdit,
             "entry": markdown2.markdown(entry),
             "form": SearchForm(),
             "msg_success": msg_success
